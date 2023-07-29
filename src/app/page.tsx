@@ -1,5 +1,10 @@
-const Home = () => {
-  return <div>Hello, world!</div>
-}
+import { getServerSession } from 'next-auth'
 
-export default Home
+import { options } from './api/auth/[...nextauth]/options'
+import TestClient from './test-client'
+
+export default async function Home() {
+  const session = await getServerSession(options)
+  console.log(session)
+  return <TestClient />
+}
